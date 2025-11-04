@@ -4,8 +4,8 @@ pros::Motor bottom_rollers(16, pros::v5::MotorGears::blue);
 pros::Motor top_rollers(15,pros::v5::MotorGears::blue);
 
 void loading(){
-    top_rollers.move(110);
-    bottom_rollers.move(100);
+    top_rollers.move(120);
+    bottom_rollers.move(105);
 }
 
 void score_bottom(){

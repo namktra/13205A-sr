@@ -36,7 +36,11 @@
 
 #include "api.h"
 #include "subsystems.hpp"
+#include "intake.hpp"
+#include "pneumatics.hpp"
+#include "autonomous.hpp"
 #include "lemlib/api.hpp"
+
 
 /**
  * You should add more #includes here

@@ -1,4 +1,6 @@
 #pragma once
 
 void tuning_auton();
-toha
+void first_auton();
+
+

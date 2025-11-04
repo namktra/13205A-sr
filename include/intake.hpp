@@ -1,4 +1,5 @@
 #pragma once
+#include "pros/motors.hpp"
 
 extern pros::Motor bottom_rollers;
 extern pros::Motor top_rollers;
