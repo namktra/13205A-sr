@@ -21,3 +21,7 @@ void first_auton(){
     loading();
     chassis.moveToPose(2,24.2,15,5000,{true,0,0.5,80,65,0.8});
 }
+
+void template_function(){
+    // add code here
+}
