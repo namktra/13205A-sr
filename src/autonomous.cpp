@@ -19,7 +19,8 @@ void first_auton(){
     scraper_toggled();
     chassis.setPose(0,0,0);
     loading();
-    chassis.moveToPose(2,24.2,15,5000,{true,0,0.5,80,65,0.8});
+    chassis.moveToPose(2,24.2,8,5000,{true,0,0.5,80,65,0.8});
+    bottom_rollers.loading()
 }
 
 void template_function(){
