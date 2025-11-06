@@ -4,7 +4,7 @@
 
 extern pros::adi::DigitalOut scraper;
 extern pros::adi::DigitalOut descore;
-extern pros::adi::DigitalOut middle;
+extern pros::adi::DigitalOut middle
 extern bool enabled_ml;
 extern bool enabled_ds;
 extern bool enabled_mid;
