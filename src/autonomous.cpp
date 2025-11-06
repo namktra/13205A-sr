@@ -19,12 +19,16 @@ void first_auton(){
     scraper_toggled();
     chassis.setPose(0,0,0);
     loading();
-    chassis.moveToPose(2,24.2,8,5000,{true,0,0.5,80,65,0.8});  
+    chassis.moveToPose(2,24.2,8,5000,{true,0,0.5,40,25,0.8});  
     // in the curly braces it goes {foward, horiziontal drift, another value, MAX SPEED, MIN SPEED, another value}
     // tweak max and min speed for accurate auton i would suggest having a low min speed for now like 0-10
     loading();
 }
 
 void template_function(){
+    // add code here
+}
+
+void shit_auton(){
     // add code here
 }
