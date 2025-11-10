@@ -34,6 +34,7 @@
  */
 #define PROS_USE_LITERALS
 
+#include "selector/api.hpp"
 #include "api.h"
 #include "subsystems.hpp"
 #include "intake.hpp"

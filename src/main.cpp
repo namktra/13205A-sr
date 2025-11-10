@@ -4,6 +4,8 @@
 #include "pneumatics.hpp"
 #include "pros/llemu.hpp"
 #include "pros/misc.h"
+#include "pros/motors.h"
+#include "selector/auton_selector.hpp"
 
 // controller
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
@@ -52,7 +54,7 @@ lemlib::ControllerSettings linearController(10, // proportional gain (kP)
 // angular motion controller
 lemlib::ControllerSettings angularController(2.3, // proportional gain (kP)
                                              0, // integral gain (kI)
-                                             12.5, // derivative gain (kD)
+                                             12.8, // derivative gain (kD)
                                              3, // anti windup
                                              1, // small error range, in degrees
                                              100, // small error range timeout, in milliseconds
@@ -76,9 +78,9 @@ lemlib::ExpoDriveCurve throttleCurve(7, // joystick deadband out of 127
 );
 
 // input curve for steer input during driver control
-lemlib::ExpoDriveCurve steerCurve(7, // joystick deadband out of 127
-                                  7, // minimum output where drivetrain will move out of 127
-                                  1.002 // expo curve gain
+lemlib::ExpoDriveCurve steerCurve(1, // joystick deadband out of 127
+                                  1, // minimum output where drivetrain will move out of 127
+                                  1.02 // expo curve gain
 );
 
 // create the chassis
@@ -94,7 +96,6 @@ void initialize() {
     pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate sensors
     enabled_ml = false;
-    scraper_toggled();
     chassis.setPose(0,0,0);
 
     // the default rate is 50. however, if you need to change the rate, you
@@ -140,7 +141,7 @@ ASSET(example_txt); // '.' replaced with "_" to make c++ happy
  * This is an example autonomous routine which demonstrates a lot of the features LemLib has to offer
  */
 void autonomous() {
-    shit_auton();
+    template_name();
 }
 
 /**
@@ -153,8 +154,8 @@ void opcontrol() {
         
         int leftY = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
         int rightX = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
-        chassis.arcade(leftY, rightX, true, 0);
-        chassis.setBrakeMode(pros::E_MOTOR_BRAKE_COAST);
+        chassis.arcade(leftY, rightX);
+        chassis.setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
 
 
 
