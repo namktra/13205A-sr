@@ -6,6 +6,7 @@
 #include "pros/misc.h"
 #include "pros/motors.h"
 #include "selector/auton_selector.hpp"
+#include <type_traits>
 
 // controller
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
@@ -95,8 +96,10 @@ lemlib::Chassis chassis(drivetrain, linearController, angularController, sensors
 void initialize() {
     pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate sensors
-    enabled_ml = false;
     chassis.setPose(0,0,0);
+    scraper.set_value(false);
+    enabled_ml = false;
+
 
     // the default rate is 50. however, if you need to change the rate, you
     // can do the following.
@@ -141,7 +144,7 @@ ASSET(example_txt); // '.' replaced with "_" to make c++ happy
  * This is an example autonomous routine which demonstrates a lot of the features LemLib has to offer
  */
 void autonomous() {
-    template_name();
+    right_auton();
 }
 
 /**
