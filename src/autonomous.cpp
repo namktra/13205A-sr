@@ -70,37 +70,6 @@ void left_auton(){
     score_top();
 
 
-
-
-
-
-    // first three blocks
-    // loading();
-    // chassis.moveToPose(0, 10, -55,1000, {true,0,0.5,65,2,1});
-    // chassis.moveToPose(-3,27,-34,3000,{true,0,0.5,65,8,1});
-   
-    // // two middle blocks
-    // chassis.moveToPoint(-21.3,42,2000,{true,39,4,1});
-    // chassis.waitUntil(22.9);
-    // pros::delay(1500);
-    // stop();
-
-
-    // // moving
-    // chassis.moveToPoint(-14.5,28,2000,{false,39,2,1});
-    // pros::delay(1200);
-
-    // // scoring
-    // chassis.turnToHeading(-220.7,10);
-    // chassis.moveToPose(-35,10,180,3000,{true,0,0,80,8,1});
-    // chassis.moveToPoint(-35,34,2000,{false,70,0,1});
-    // pros::delay(1000);
-    // score_top();
-    // pros::delay(4000);
-    // scraper_toggled();
-    // chassis.moveToPoint(-33.5,-10,1000,{true,50,40,1});
-    // loading();
-    // pros::delay(1700); 
 }
 
 void move(){
