@@ -84,6 +84,7 @@ void skills_auton(){
 }
 
 void new_skills_auto(){
+    // first match loader
     pros::delay(500);
     chassis.moveToPoint(0, 44.5, 4500,{true,70,1});
     chassis.turnToHeading(90, 1500);
@@ -94,19 +95,80 @@ void new_skills_auto(){
     chassis.moveToPoint(0, 46.5, 4500,{false,70,1});
     scraper_toggled();
     stop();
+
+    // movement to second loader
     chassis.moveToPoint(-15, 61, 1500,{false,70,1});
     pros::delay(1500);
     chassis.turnToHeading(90, 1500);
-    chassis.moveToPoint(-88, 61, 1500,{false,70,1});
+    chassis.moveToPoint(-88, 61, 1500,{false,100,1});
     pros::delay(1500);
-    chassis.moveToPoint(-88, 52.5, 1500,{false,70,1});
+    chassis.moveToPoint(-88, 50, 1500,{false,70,0});
     pros::delay(1500);
     chassis.turnToHeading(270, 1500);
     pros::delay(1500);
     chassis.setPose(0,0,270);
+    
+    // scoring first 6 blocks
     chassis.moveToPoint(18, 0, 1500,{false,70,1});
-    pros::delay(1500);
+    pros::delay(750);
     score_top();
+
+    // intaking second loader
+    scraper_toggled();
+    pros::delay(2000);
+    loading();
+    chassis.moveToPoint(-20, 0, 2000,{true,55,5});
+    pros::delay(2500);
+    
+    // scoring second set of 6 blocks
+    chassis.moveToPoint(18, 0, 1500,{false,64,5});
+    chassis.waitUntilDone();
+    score_top();
+    scraper_toggled();
+    pros::delay(2000);
+    
+
+    // third goal 
+    chassis.moveToPoint(0, 0, 1500,{true,64,0});
+    pros::delay(750);
+    chassis.turnToHeading(180, 750);
+    chassis.moveToPoint(0, -93.5, 2000,{true,105,0});
+    chassis.setPose(0,0,180);
+    chassis.turnToHeading(270, 0);
+    pros::delay(1000);
+    loading();
+    chassis.moveToPoint(-20, 0, 3000,{true,105,0});
+    pros::delay(1250);
+
+    // move to fourth
+    chassis.moveToPoint(0, 0, 1250,{false,70,1});
+    chassis.moveToPoint(27, -15, 1250,{false,70,1});
+    pros::delay(500);
+    chassis.turnToHeading(270, 500);
+    chassis.moveToPoint(95, -15, 2000,{false,100,1});
+    chassis.moveToPoint(104, -4, 2000,{false,100,1});
+    chassis.turnToHeading(90, 500);
+    chassis.setPose(0,0,90);
+
+    // scoring 3rd set of blocks
+    chassis.moveToPoint(-17, 0, 2000,{false,70,1});
+    chassis.waitUntilDone();
+    score_top();
+    pros::delay(2500);
+    scraper_toggled();
+    loading();
+    pros::delay(750);
+
+    // intaking 4th set
+    chassis.moveToPoint(20, 0, 2000,{true,70,1});
+    pros::delay(2000);
+    
+    // scoring 4th set
+    chassis.moveToPoint(-17, 0, 2000,{false,70,1});
+    chassis.waitUntilDone();
+    score_top();
+    pros::delay(2500);
+
     // chassis.moveToPoint(-85, 45, 1500,{false,70,1});
     // chassis.moveToPoint(0, 46.5, 4500,{false,55,1});
     // scraper_toggled();
