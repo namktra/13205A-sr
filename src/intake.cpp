@@ -13,7 +13,7 @@ void score_bottom(){
     top_rollers.move(-90);
 }
 void score_mid(){
-    top_rollers.move(-75);
+    top_rollers.move(-100);
     bottom_rollers.move(127);
 }
 

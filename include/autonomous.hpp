@@ -5,4 +5,5 @@ void right_auton();
 void left_auton();
 void move();
 void skills_auton();
+void new_skills_auto();
 
