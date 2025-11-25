@@ -99,8 +99,8 @@ void initialize() {
     chassis.setPose(0,0,0);
     scraper.set_value(false);
     enabled_ml = false;
-    descore.set_value(false);
-    enabled_ds = false;
+    descore.set_value(true);
+    enabled_ds = true;
 
 
     // the default rate is 50. however, if you need to change the rate, you
