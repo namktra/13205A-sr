@@ -5,6 +5,7 @@
 #include "pros/llemu.hpp"
 #include "pros/misc.h"
 #include "pros/motors.h"
+#include "pros/rtos.hpp"
 #include "selector/auton_selector.hpp"
 #include <type_traits>
 
@@ -102,6 +103,13 @@ void initialize() {
     descore.set_value(true);
     enabled_ds = true;
 
+    pros::Task intakeControl([]{
+        while(true){
+            changeSpeeds();
+            pros::delay(10);
+        }
+    });
+
 
     // the default rate is 50. however, if you need to change the rate, you
     // can do the following.
@@ -143,10 +151,13 @@ ASSET(example_txt); // '.' replaced with "_" to make c++ happy
 /**
  * Runs during auto
  *
- * This is an example autonomous routine which demonstrates a lot of the features LemLib has to offer
+ * This is an example autonomous routine w  
+ which demonstrates a lot of the features LemLib has to offer
  */
 void autonomous() {
-    new_skills_auto();
+    new_skills_auto();  
+    // left_auton();
+    // right_auton();
 }
 
 /**
@@ -171,8 +182,7 @@ void opcontrol() {
             score_top();
         } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)){
             score_bottom();
-        } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){
-            score_mid();
+
         } else {
             stop();
         }
@@ -187,7 +197,7 @@ void opcontrol() {
         } else 
         {}
 
-        if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)){
+        if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)){
             descore_toggled();
         } else 
         {}
