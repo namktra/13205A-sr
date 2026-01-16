@@ -37,10 +37,10 @@ void right_auton(){
     score_top();
     pros::delay(2250);
     scraper_toggled();
-    chassis.moveToPoint(29.3,-15,1500,{true,50,50,1});
+    chassis.moveToPoint(29.3,-16.5,1500,{true,50,50,1});
     loading();
     pros::delay(2000);
-    chassis.moveToPoint(27.3,34,1000,{false,70,0,1});
+    chassis.moveToPoint(29.3,34,1000,{false,70,0,1});
     chassis.waitUntilDone();
     score_top();
 }
@@ -57,7 +57,7 @@ void left_auton(){
     pros::delay(1200);
     chassis.turnToHeading(40.7,10);
     chassis.moveToPose(-35,9.4,180,3000,{true,0,0,80,8,1});
-    chassis.moveToPoint(-35,34,2000,{false,70,0,1});
+    chassis.moveToPoint(-35,32,2000,{false,70,0,1});
     pros::delay(1000);
     score_top();
     pros::delay(2250);
@@ -65,7 +65,7 @@ void left_auton(){
     chassis.moveToPoint(-35,-15,1500,{true,60,50,1});
     loading();
     pros::delay(1600);
-    chassis.moveToPoint(-3,34,1000,{false,70,0,1});
+    chassis.moveToPoint(-35,32,1000,{false,70,0,1});
     chassis.waitUntilDone();
     score_top();
 

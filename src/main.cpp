@@ -146,7 +146,7 @@ ASSET(example_txt); // '.' replaced with "_" to make c++ happy
  * This is an example autonomous routine which demonstrates a lot of the features LemLib has to offer
  */
 void autonomous() {
-    four_three_left_auton();
+    right_auton();
 }
 
 /**
