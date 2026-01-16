@@ -39,6 +39,8 @@ void right_auton(){
     scraper_toggled();
     chassis.moveToPoint(29.3,-16.5,1500,{true,50,50,1});
     loading();
+    pros::delay(1600);
+    chassis.moveToPoint(29.3,34,1000,{false,70,0,1});
     pros::delay(2000);
     chassis.moveToPoint(29.3,34,1000,{false,70,0,1});
     chassis.waitUntilDone();
