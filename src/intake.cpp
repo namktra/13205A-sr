@@ -19,7 +19,7 @@ void score_bottom(){
 
 void score_top(){
     bottom_rollers.move(-110);
-    top_rollers.move(110);
+    top_rollers.move(127);
 }
 
 void stop(){

@@ -41,8 +41,6 @@ void right_auton(){
     loading();
     pros::delay(1600);
     chassis.moveToPoint(29.3,34,1000,{false,70,0,1});
-    pros::delay(2000);
-    chassis.moveToPoint(29.3,34,1000,{false,70,0,1});
     chassis.waitUntilDone();
     score_top();
 }
@@ -92,20 +90,19 @@ void new_skills_auto(){
     chassis.turnToHeading(90, 1500);
     scraper_toggled();
     loading();
-    chassis.moveToPoint(25, 44.5, 2000,{true,55,0,1});
+    chassis.moveToPoint(23, 43.5, 2000,{true,55,0,1});
     pros::delay(3500);
-    chassis.moveToPoint(23, 44.5, 2000,{true,55,0,1});
-    pros::delay(3500);
-    chassis.moveToPoint(0, 44.5, 4500,{false,70,1});
+    chassis.moveToPoint(0, 43.5, 4500,{false,70,1});
     scraper_toggled();
 
     // movement to second loader
-    chassis.moveToPoint(-15, 61, 1500,{false,70,1});
+    chassis.moveToPoint(0, 62.5, 1500,{false,70,1});
     pros::delay(1500);
     chassis.turnToHeading(90, 1500);
-    chassis.moveToPoint(-88, 61, 1500,{false,100,1});
+    // line up with the corner//
+    chassis.moveToPoint(-88, 62.5, 1500,{false,100,1});
     pros::delay(1500);
-    chassis.moveToPoint(-88, 50, 1500,{false,70,0});
+    chassis.moveToPoint(-88, 51, 1500,{false,70,0});
     pros::delay(1500);
     chassis.turnToHeading(270, 1500);
     pros::delay(1500);
@@ -130,7 +127,7 @@ void new_skills_auto(){
     scraper_toggled();
     pros::delay(2000);
     
-
+    
     // third goal 
     pros::delay(750);
     loading();
@@ -139,15 +136,16 @@ void new_skills_auto(){
     pros::delay(750);
     chassis.turnToHeading(180, 750);
     pros::delay(750);
-    chassis.moveToPoint(-5, -98.5, 5000,{true,90,0});
+    chassis.moveToPoint(-5, -101.5, 5000,{true,90,0});
     pros::delay(500);
     chassis.turnToHeading(270, 500);
     pros::delay(500);
     scraper_toggled();
     pros::delay(500);      
-      chassis.moveToPoint(-24, -98.5, 5000,{true,90,0});
+    //scraper//
+    chassis.moveToPoint(-24, -101.5, 5000,{true,90,0});
     pros::delay(500);
-    chassis.moveToPoint(-12, -98.5, 5000,{false,90,0});
+    chassis.moveToPoint(-5, -101.5, 5000,{false,90,0});
     chassis.waitUntilDone();
     score_top();
     // pros::delay(500);
@@ -200,7 +198,7 @@ void new_skills_auto(){
     // chassis.moveToPoint(15.2, -14,3000,{true,50,40,1});
     // chassis.turnToHeading(0, 1000);
     // chassis.moveToPoint(15.2, 14,1500,{true,100,0,1});
-
+    
     
 }
 
