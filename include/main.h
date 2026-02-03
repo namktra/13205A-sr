@@ -41,6 +41,7 @@
 #include "pneumatics.hpp"
 #include "autonomous.hpp"
 #include "lemlib/api.hpp"
+#include "distance.hpp"
 
 
 /**
