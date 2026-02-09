@@ -1,5 +1,6 @@
 #pragma once
 #include "pros/distance.hpp"
+#include "lemlib/pose.hpp"
 
 extern pros::Distance side;
 extern pros::Distance back;
