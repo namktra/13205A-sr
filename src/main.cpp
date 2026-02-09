@@ -155,7 +155,7 @@ ASSET(example_txt); // '.' replaced with "_" to make c++ happy
  which demonstrates a lot of the features LemLib has to offer
  */
 void autonomous() {
-    new_skills_auto();
+    distance_skills();
 }
 
 /**
@@ -175,7 +175,7 @@ void opcontrol() {
 
 
         if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
-            loading();
+            ReAlign(1);
         } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
             score_top();
         } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)){

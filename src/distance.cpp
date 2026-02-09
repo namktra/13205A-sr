@@ -1,25 +1,35 @@
+
 #include "pros/distance.hpp"
 #include "main.h"
 
 pros::Distance side(2);
 pros::Distance back(3);
 
-double offsetSide = 0;
-double offsetBack = 0;
+
+
+double offsetSide = 4.5;
+double offsetBack = 4.8;
+
+lemlib::Pose curr = chassis.getPose();
+double currHeading = curr.theta;
+double currX = curr.x;
+double currY = curr.y;
+
+
 
 void ReAlign(int quadrant){
 
     // taking the readings from the sensors; 
     // the offset is the distance from the sensor to middle of the bot ||  NEEDS CHANGING
-    double sideReading = side.get() + offsetSide;
-    double backReading = back.get() + offsetBack;
+    double sideReading = side.get() * (0.03937007874) + offsetSide;
+    double backReading = back.get() * (0.03937007874) + offsetBack;
 
 
     // takes the current position and saves them into variables
-    Pose curr = chassis.getPose();
-    double currHeading = curr.theta;
-    double currX = curr.x;
-    double currY = curr.y;
+    curr = chassis.getPose();
+    currHeading = curr.theta;
+    currX = curr.x;
+    currY = curr.y;
     
     // figuring out the orientation of the robot based on heading
     int direction;
