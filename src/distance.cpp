@@ -7,7 +7,7 @@ pros::Distance back(3);
 
 
 
-double offsetSide = 4.5;
+double offsetSide = 5.5;
 double offsetBack = 4.8;
 
 lemlib::Pose curr = chassis.getPose();

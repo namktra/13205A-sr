@@ -219,8 +219,9 @@ void four_three_left_auton(){
 void distance_skills(){
     //change speed values to tune//
     chassis.setPose(0,0,270);
+    ReAlign(2);
     pros::delay(500);
-    chassis.moveToPoint(45, 0, 1500,{false,60,0,1});
+    chassis.moveToPoint(45, currY, 1500,{false,60,0,1});
     chassis.waitUntilDone();
     ReAlign(1);
     pros::delay(1500);
