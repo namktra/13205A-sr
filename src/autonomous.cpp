@@ -1,3 +1,4 @@
+#include "distance.hpp"
 #include "intake.hpp"
 #include "lemlib/chassis/chassis.hpp"
 #include "main.h"
@@ -244,15 +245,15 @@ void distance_skills(){
     pros::delay(1000);
     chassis.turnToHeading(0, 1500);
     //at 2nd goal//
-    chassis.moveToPoint(49.5,33.5, 1500,{false,60,0,1});
+    chassis.moveToPoint(49.5,30, 1500,{false,60,0,1});
     chassis.waitUntilDone();
     score_top();
     pros::delay(2500);
     loading();
     scraper_toggled();
-    chassis.moveToPoint(49.5,62.5, 1500,{true,60,0,1});
+    chassis.moveToPoint(currX,62.5, 1500,{true,60,0,1});
     pros::delay(750);
-    chassis.moveToPoint(49.5,33.5, 1500,{false,60,0,1});
+    chassis.moveToPoint(currX,33.5, 1500,{false,60,0,1});
     chassis.waitUntilDone();
     score_top();
     pros::delay(2500);

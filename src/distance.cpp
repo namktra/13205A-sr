@@ -2,7 +2,7 @@
 #include "pros/distance.hpp"
 #include "main.h"
 
-pros::Distance side(2);
+pros::Distance side(10);
 pros::Distance back(3);
 
 
@@ -43,33 +43,33 @@ void ReAlign(int quadrant){
     // to its current quadrant and orientation (direction)
     if(quadrant == 1){
         
-        if(direction == 1){chassis.setPose(currX, 0 - (72-backReading),currHeading);}
-        if(direction == 3){chassis.setPose(72- sideReading, currY,currHeading);}
-        if(direction == 4){chassis.setPose(72-backReading, 0 - (72-sideReading),currHeading);}
+        if(direction == 2){chassis.setPose(currX, 0 - (72-sideReading),currHeading);}
+        if(direction == 3){chassis.setPose(72- backReading, currY,currHeading);}
+        if(direction == 1){chassis.setPose(72-sideReading, 0 - (72-backReading),currHeading);}
 
     }
 
     if(quadrant == 2){
 
-        if(direction == 2){chassis.setPose(currX, 72 - sideReading,currHeading);}
-        if(direction == 3){chassis.setPose(72 - sideReading, 72 - backReading,currHeading);}
-        if(direction == 4){chassis.setPose(72 - backReading, currY,currHeading);}
+        if(direction == 3){chassis.setPose(currX, 72 - backReading,currHeading);}
+        if(direction == 4){chassis.setPose(72 - backReading, 72 - sideReading,currHeading);}
+        if(direction == 1){chassis.setPose(72 - sideReading, currY,currHeading);}
         
     }
 
     if(quadrant == 3){
         
-        if(direction == 1){chassis.setPose(0 - (72 - sideReading), currY,currHeading);}
-        if(direction == 2){chassis.setPose(0 - (72 - backReading), 72 - sideReading,currHeading);}
-        if(direction == 3){chassis.setPose(currX, 72 - backReading,currHeading);}
+        if(direction == 2){chassis.setPose(0 - (72 - backReading), currY,currHeading);}
+        if(direction == 4){chassis.setPose(0 - (72 - sideReading), 72 - backReading,currHeading);}
+        if(direction == 3){chassis.setPose(currX, 72 - sideReading,currHeading);}
         
     }
 
     if(quadrant == 4){
         
-        if(direction == 1){chassis.setPose(0-(72-sideReading),0-(72-backReading),currHeading);}
-        if(direction == 2){chassis.setPose(0-(72-backReading),currY,currHeading);}
-        if(direction == 4){chassis.setPose(currX,0-(72-sideReading),currHeading);}
+        if(direction == 2){chassis.setPose(0-(72-backReading),0-(72-sideReading),currHeading);}
+        if(direction == 3){chassis.setPose(0-(72-sideReading),currY,currHeading);}
+        if(direction == 1){chassis.setPose(currX,0-(72-backReading),currHeading);}
         
     }
 
