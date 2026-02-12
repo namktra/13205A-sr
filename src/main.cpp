@@ -161,8 +161,8 @@ ASSET(example_txt); // '.' replaced with "_" to make c++ happy
  which demonstrates a lot of the features LemLib has to offer
  */
 void autonomous() {
-    //distance_skills();
-    right_auton();
+    distance_skills();
+    // right_auton();
     // left_auton(); s
     // tuning_auton();
     // four_three_left_auton();

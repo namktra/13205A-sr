@@ -147,6 +147,7 @@ void four_three_left_auton(){
 }
 
 void distance_skills(){
+    
     //change speed values to tune//
     chassis.setPose(0,0,90);
     pros::delay(500);
@@ -175,24 +176,24 @@ void distance_skills(){
     pros::delay(500);
     
     //moving to other side//
-    chassis.moveToPoint(currX,45, 2000,{true,60,0,1});
+    chassis.moveToPoint(currX,55, 2000,{true,60,0,1});
     pros::delay(2500);
-    chassis.moveToPoint(47.8,50, 1500,{true,60,0,1});
-    pros::delay(5000);
+    chassis.moveToPoint(47,55, 1500,{true,60,0,1});
+    pros::delay(2500);
     ReAlign(2);
     pros::delay(1000);
     chassis.turnToHeading(0, 1500);
     ReAlign(2);
-    
+    pros::delay(750);
     //at 2nd goal//
-    chassis.moveToPoint(currX,25, 1500,{false,60,0,1});
+    chassis.moveToPoint(47,25, 1500,{false,60,0,1});
     ReAlign(2);
     chassis.waitUntilDone();
     score_top();
     pros::delay(2500);
     loading();
     scraper_toggled();
-    chassis.moveToPoint(currX,65, 1500,{true,60,0,1});
+    chassis.moveToPoint(currX,75, 1500,{true,60,0,1});
     pros::delay(750);
     chassis.moveToPoint(currX,25, 1500,{false,60,0,1});
     chassis.waitUntilDone();
@@ -200,12 +201,56 @@ void distance_skills(){
     pros::delay(2500);
     
     //move to third matchload//
-    chassis.moveToPoint(currX,45, 1500,{false,60,0,1});
+    chassis.moveToPoint(currX,50, 1500,{true,60,0,1});
+    
+    pros::delay(500);
     chassis.turnToHeading(270, 1500);
+    //get rid of line after//
+    chassis.setPose(0,0,270);
+    pros::delay(1000);
     ReAlign(2);
-    chassis.moveToPoint(-46,45, 1500,{true,60,0,1});
+    pros::delay(5000);
+    chassis.moveToPoint(-52,currY, 10000,{true,60,0,1});
     pros::delay(1500);
+    chassis.turnToHeading(0, 1500);
+    ReAlign(3);
+    pros::delay(1000);
+    
+    //third matchload//
+
+    pros::delay(1500);
+    chassis.moveToPoint(currX,75, 1500,{true,60,0,1});
+    pros::delay(1500);
+    chassis.moveToPoint(currX,65, 1500,{false,60,0,1});
+    pros::delay(1500);
+    chassis.turnToHeading(180, 1500);
+    pros::delay(600);
+    ReAlign(3);
+    pros::delay(5000);
+    //moving to fourth matchload//
+    chassis.moveToPoint(-70,27, 1500,{true,60,0,1});
+    pros::delay(1500);
+    ReAlign(3);
+    pros::delay(1500);
+    chassis.moveToPoint(currX,-50, 3000,{true,60,0,1});
+    pros::delay(1500);
+    ReAlign(4);
+    pros::delay(1500);
+    chassis.moveToPoint(-46,-25, 3000,{false,60,0,1});
+    pros::delay(1500);
+    
+    
+    //matchload//
+    scraper_toggled();
+    pros::delay(750);
+    chassis.moveToPoint(currX,75, 1500,{true,60,0,1});
+    pros::delay(750); 
+    chassis.moveToPoint(currX,60, 1500,{false,60,0,1});
+
+    //moving to fourth matchload//
+
+    chassis.moveToPoint(-70,60, 1500,{true,60,0,1});
+    pros::delay(750); 
 
     
-
-}
+   }
