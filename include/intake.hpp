@@ -2,6 +2,8 @@
 #include "pros/motors.hpp"
 
 extern int TOP;
+extern int BOT;
+extern bool scoringOn;
 extern pros::Motor bottom_rollers;
 extern pros::Motor top_rollers;
 

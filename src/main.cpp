@@ -100,12 +100,18 @@ void initialize() {
     chassis.setPose(0,0,0);
     scraper.set_value(false);
     enabled_ml = false;
-    descore.set_value(true);
-    enabled_ds = true;
+    descore.set_value(false);
+    enabled_ds = false;
+    controller.set_text(0,0,"Middle Disabled");
 
-    pros::Task intakeControl([]{
+    pros::Task middleControl([]{
         while(true){
             changeSpeeds();
+            if(enabled_mid == true && scoringOn){
+                middle.set_value(true);
+            } else {
+                middle.set_value(false);
+            }
             pros::delay(10);
         }
     });
@@ -155,7 +161,11 @@ ASSET(example_txt); // '.' replaced with "_" to make c++ happy
  which demonstrates a lot of the features LemLib has to offer
  */
 void autonomous() {
-    distance_skills();
+    //distance_skills();
+    right_auton();
+    // left_auton(); s
+    // tuning_auton();
+    // four_three_left_auton();
 }
 
 /**
@@ -175,14 +185,15 @@ void opcontrol() {
 
 
         if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
-            ReAlign(1);
+            loading();
         } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
             score_top();
-        } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)){
+            scoringOn = true;
+        } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){
             score_bottom();
-
         } else {
             stop();
+            scoringOn = false;
         }
 
         if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)){
@@ -190,12 +201,12 @@ void opcontrol() {
         } else 
         {}
 
-        if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT)){
+        if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)){
             middle_toggled();
         } else 
         {}
 
-        if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)){
+        if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1)){
             descore_toggled();
         } else 
         {}

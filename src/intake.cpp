@@ -3,6 +3,8 @@
 // motor speeds
 
 int TOP = 110;
+int BOT = -115;
+bool scoringOn = false;
 
 pros::Motor bottom_rollers(15, pros::v5::MotorGears::blue);
 pros::Motor top_rollers(16,pros::v5::MotorGears::blue);
@@ -18,8 +20,8 @@ void score_bottom(){
 }
 
 void score_top(){
-    bottom_rollers.move(-110);
-    top_rollers.move(127);
+    bottom_rollers.move(BOT);
+    top_rollers.move(TOP);
 }
 
 void stop(){
@@ -29,9 +31,11 @@ void stop(){
 
 void changeSpeeds(){
     if (enabled_mid == false){
-        TOP = -117;
+        TOP = 117;
+        BOT = -110;
     } else if (enabled_mid == true){
-        TOP = -80;
+        TOP = 98;
+        BOT = -81;
     }
 }
 

@@ -6,7 +6,7 @@ pros::adi::DigitalOut descore('B');
 pros::adi::DigitalOut middle('C');
 bool enabled_ml = true;
 bool enabled_ds = false;
-bool enabled_mid = true;
+bool enabled_mid = false;
 
 
 void scraper_toggled(){
@@ -20,7 +20,11 @@ void descore_toggled(){
 }
 
 void middle_toggled(){
-        middle.set_value(!enabled_mid);
         enabled_mid = !enabled_mid;
+        if(enabled_mid){
+                controller.set_text(0,0,"Middle Enabled");
+        } else {
+                controller.set_text(0,0,"Middle Disabled");
+        }
 }
 
