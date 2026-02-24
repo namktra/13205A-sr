@@ -3,7 +3,7 @@
 #include "main.h"
 
 pros::Distance side(10);
-pros::Distance back(3);
+pros::Distance back(6);
 
 
 
@@ -60,8 +60,8 @@ void ReAlign(int quadrant){
     if(quadrant == 3){
         
         if(direction == 2){chassis.setPose(0 - (72 - backReading), currY,currHeading);}
-        if(direction == 4){chassis.setPose(0 - (72 - sideReading), 72 - backReading,currHeading);}
-        if(direction == 3){chassis.setPose(currX, 72 - sideReading,currHeading);}
+        if(direction == 3){chassis.setPose(0 - (72 - sideReading), 72 - backReading,currHeading);}
+        if(direction == 4){chassis.setPose(currX, 72 - sideReading,currHeading);}
         
     }
 

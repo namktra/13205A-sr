@@ -149,26 +149,29 @@ void four_three_left_auton(){
 void distance_skills(){
     
     //change speed values to tune//
+
     chassis.setPose(0,0,90);
     pros::delay(500);
     ReAlign(4);
     pros::delay(500);
-    chassis.moveToPoint(46, currY, 1500,{true,60,0,1});
-    chassis.waitUntilDone();
+    chassis.moveToPoint(46, currY, 2500,{true,60,0,1});
     pros::delay(1500);
     ReAlign(1);
     pros::delay(1500);
     chassis.turnToHeading(180, 1500);
     scraper_toggled();
     pros::delay(1500);
+
     //first matchload//
+
     chassis.moveToPoint(currX,-70, 1500,{true,60,0,1});
     loading();
     pros::delay(1500);
     chassis.moveToPoint(currX,-57.5, 1500,{false,60,0,1});
-    pros::delay(750);
-    scraper_toggled();
+    pros::delay(1000);
+    chassis.waitUntilDone();
     chassis.turnToHeading(0, 1500);
+    scraper_toggled(); 
     chassis.moveToPoint(70,-27, 1500,{true,60,0,1});
     pros::delay(1500);
     chassis.turnToHeading(0, 1500);
@@ -176,6 +179,7 @@ void distance_skills(){
     pros::delay(500);
     
     //moving to other side//
+    
     chassis.moveToPoint(currX,55, 2000,{true,60,0,1});
     pros::delay(2500);
     chassis.moveToPoint(47,55, 1500,{true,60,0,1});
@@ -185,32 +189,33 @@ void distance_skills(){
     chassis.turnToHeading(0, 1500);
     ReAlign(2);
     pros::delay(750);
+
     //at 2nd goal//
+    
     chassis.moveToPoint(47,25, 1500,{false,60,0,1});
     ReAlign(2);
     chassis.waitUntilDone();
     score_top();
-    pros::delay(2500);
+    pros::delay(2000);
     loading();
     scraper_toggled();
     chassis.moveToPoint(currX,75, 1500,{true,60,0,1});
-    pros::delay(750);
+    pros::delay(2000);
     chassis.moveToPoint(currX,25, 1500,{false,60,0,1});
     chassis.waitUntilDone();
     score_top();
-    pros::delay(2500);
+    pros::delay(2000);
     
     //move to third matchload//
-    chassis.moveToPoint(currX,50, 1500,{true,60,0,1});
     
+    chassis.moveToPoint(currX,50, 1500,{true,60,0,1});
+    scraper_toggled();
     pros::delay(500);
     chassis.turnToHeading(270, 1500);
-    //get rid of line after//
-    chassis.setPose(0,0,270);
     pros::delay(1000);
     ReAlign(2);
     pros::delay(5000);
-    chassis.moveToPoint(-52,currY, 10000,{true,60,0,1});
+    chassis.moveToPoint(-48,currY, 10000,{true,60,0,1});
     pros::delay(1500);
     chassis.turnToHeading(0, 1500);
     ReAlign(3);
@@ -226,31 +231,59 @@ void distance_skills(){
     chassis.turnToHeading(180, 1500);
     pros::delay(600);
     ReAlign(3);
-    pros::delay(5000);
+    pros::delay(1500);
+
     //moving to fourth matchload//
+    
     chassis.moveToPoint(-70,27, 1500,{true,60,0,1});
     pros::delay(1500);
+
+    // DELETE THIS LATER 
+    // chassis.setPose(0,0,180);
+    // DELETE THIS LATER
+
+    pros::delay(500);
     ReAlign(3);
-    pros::delay(1500);
-    chassis.moveToPoint(currX,-50, 3000,{true,60,0,1});
+    pros::delay(500);
+    chassis.moveToPoint(currX,-43, 3000,{true,60,0,1});
     pros::delay(1500);
     ReAlign(4);
     pros::delay(1500);
-    chassis.moveToPoint(-46,-25, 3000,{false,60,0,1});
+    chassis.moveToPoint(-45,-47.5, 3000,{false,60,0,1});
     pros::delay(1500);
-    
+    chassis.turnToHeading(180, 100);
+    pros::delay(500);
+    ReAlign(4);
+    pros::delay(500);
+    chassis.moveToPoint(currX,-25, 3000,{false,60,0,1});
+
     
     //matchload//
+
     scraper_toggled();
-    pros::delay(750);
-    chassis.moveToPoint(currX,75, 1500,{true,60,0,1});
-    pros::delay(750); 
-    chassis.moveToPoint(currX,60, 1500,{false,60,0,1});
+    pros::delay(1500);
+    chassis.moveToPoint(currX,-75, 1500,{true,60,0,1});
+    pros::delay(1500); 
+    chassis.moveToPoint(currX,-25, 1500,{false,60,0,1});
+    pros::delay(1500); 
 
-    //moving to fourth matchload//
+    //scoring
 
-    chassis.moveToPoint(-70,60, 1500,{true,60,0,1});
-    pros::delay(750); 
+    chassis.moveToPoint(currX,-75, 1500,{true,60,0,1});
+    pros::delay(1500); 
+    chassis.moveToPoint(currX,-25, 1500,{false,60,0,1});
+    chassis.waitUntilDone();
+    score_top();
+    pros::delay(2000);
+    chassis.moveToPoint(currX,-60, 1500,{true,60,0,1});
+    pros::delay(1500);
+    chassis.turnToHeading(180, 1500);
+    pros::delay(1500);
+    
+    //clear park//
 
+    loading();
+    chassis.moveToPoint(-5,-60, 2000,{false,60,0,1});
+    pros::delay(1500);
     
    }

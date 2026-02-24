@@ -35,7 +35,7 @@ void changeSpeeds(){
         BOT = -110;
     } else if (enabled_mid == true){
         TOP = 98;
-        BOT = -81;
+        BOT = -85;
     }
 }
 

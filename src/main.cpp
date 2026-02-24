@@ -13,9 +13,8 @@
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 // motor groups
-pros::MotorGroup leftMotors({-13, -12, -11},
-                            pros::MotorGearset::blue); // left motor group - ports 3 (reversed), 4, 5 (reversed)
-pros::MotorGroup rightMotors({18, 19, 20}, pros::MotorGearset::blue); // right motor group - ports 6, 7, 9 (reversed)
+pros::MotorGroup leftMotors({-8, -5, -17},pros::MotorGearset::blue); // left motor group - ports 3 (reversed), 4, 5 (reversed)
+pros::MotorGroup rightMotors({7, 18, 2}, pros::MotorGearset::blue); // right motor group - ports 6, 7, 9 (reversed)
 
 // Inertial Sensor on port 10
 pros::Imu imu(14);
@@ -25,7 +24,7 @@ pros::Imu imu(14);
 // pros::Rotation horizontalEnc(20);
 
 // vertical tracking wheel encoder. Rotation sensor, port 11, reversed
-pros::Rotation verticalEnc(17);
+pros::Rotation verticalEnc(9);
 // // horizontal tracking wheel. 2.75" diameter, 5.75" offset, back of the robot (negative)
 // lemlib::TrackingWheel horizontal(&horizontalEnc, lemlib::Omniwheel::NEW_2, -5.75);
 
@@ -98,8 +97,8 @@ void initialize() {
     pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate sensors
     chassis.setPose(0,0,0);
-    scraper.set_value(false);
-    enabled_ml = false;
+    scraper.set_value(true);
+    enabled_ml = true;
     descore.set_value(false);
     enabled_ds = false;
     controller.set_text(0,0,"Middle Disabled");
@@ -163,7 +162,7 @@ ASSET(example_txt); // '.' replaced with "_" to make c++ happy
 void autonomous() {
     distance_skills();
     // right_auton();
-    // left_auton(); s
+    // left_auton(); 
     // tuning_auton();
     // four_three_left_auton();
 }
