@@ -29,7 +29,7 @@ pros::Rotation verticalEnc(9);
 // lemlib::TrackingWheel horizontal(&horizontalEnc, lemlib::Omniwheel::NEW_2, -5.75);
 
 // vertical tracking wheel. 2.75" diameter, 2.5" offset, left of the robot (negative)
-lemlib::TrackingWheel vertical(&verticalEnc, lemlib::Omniwheel::NEW_2, -2.5);
+lemlib::TrackingWheel vertical(&verticalEnc, lemlib::Omniwheel::NEW_2, -1.5);
 
 // drivetrain settings
 lemlib::Drivetrain drivetrain(&leftMotors, // left motor group
