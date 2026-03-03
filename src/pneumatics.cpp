@@ -4,10 +4,23 @@
 pros::adi::DigitalOut scraper('A');
 pros::adi::DigitalOut descore('B');
 pros::adi::DigitalOut middle('C');
+pros::adi::DigitalOut l_piston('D');
 bool enabled_ml = true;
 bool enabled_ds = false;
-bool enabled_mid = false;
+bool enabled_mid = true;
+bool enabled_lp = true;
 
+
+
+
+
+
+
+
+
+void long_toggled(){
+        enabled_lp = true;
+}
 
 void scraper_toggled(){
         scraper.set_value(!enabled_ml);

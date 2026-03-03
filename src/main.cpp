@@ -53,9 +53,9 @@ lemlib::ControllerSettings linearController(10, // proportional gain (kP)
 );
 
 // angular motion controller
-lemlib::ControllerSettings angularController(2.3, // proportional gain (kP)
+lemlib::ControllerSettings angularController(5, // proportional gain (kP)
                                              0, // integral gain (kI)
-                                             12.8, // derivative gain (kD)
+                                             40.5, // derivative gain (kD)
                                              3, // anti windup
                                              1, // small error range, in degrees
                                              100, // small error range timeout, in milliseconds
@@ -96,7 +96,12 @@ lemlib::Chassis chassis(drivetrain, linearController, angularController, sensors
 void initialize() {
     pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate sensors
+    chassis.setBrakeMode(pros::E_MOTOR_BRAKE_COAST);
     chassis.setPose(0,0,0);
+    enabled_lp = true;
+    l_piston.set_value(true);
+    enabled_mid = false;
+    middle.set_value(true);
     scraper.set_value(true);
     enabled_ml = true;
     descore.set_value(false);
@@ -106,10 +111,12 @@ void initialize() {
     pros::Task middleControl([]{
         while(true){
             changeSpeeds();
-            if(enabled_mid == true && scoringOn){
-                middle.set_value(true);
-            } else {
+            if(enabled_mid && scoringOn){
                 middle.set_value(false);
+                l_piston.set_value(false);
+            } else {
+                middle.set_value(true);
+                l_piston.set_value(true);
             }
             pros::delay(10);
         }
@@ -165,6 +172,7 @@ void autonomous() {
     // left_auton(); 
     // tuning_auton();
     // four_three_left_auton();
+    // pid_testing();
 }
 
 /**
@@ -178,7 +186,7 @@ void opcontrol() {
         int leftY = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
         int rightX = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
         chassis.arcade(leftY, rightX);
-        chassis.setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
+        chassis.setBrakeMode(pros::E_MOTOR_BRAKE_COAST);
 
 
 
@@ -186,15 +194,18 @@ void opcontrol() {
         if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
             loading();
         } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
+            
             score_top();
             scoringOn = true;
+            
+    
         } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){
             score_bottom();
         } else {
             stop();
             scoringOn = false;
         }
-
+        
         if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)){
             scraper_toggled();
         } else 
