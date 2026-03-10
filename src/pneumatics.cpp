@@ -18,9 +18,7 @@ bool enabled_lp = true;
 
 
 
-void long_toggled(){
-        enabled_lp = true;
-}
+
 
 void scraper_toggled(){
         scraper.set_value(!enabled_ml);

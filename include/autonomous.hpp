@@ -9,5 +9,7 @@ void new_skills_auto();
 void four_three_left_auton();
 void distance_skills();
 void pid_testing();
+void lateral_tuning();
+void straight_testing();
 
 
