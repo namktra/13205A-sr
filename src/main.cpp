@@ -96,7 +96,7 @@ lemlib::Chassis chassis(drivetrain, linearController, angularController, sensors
 void initialize() {
     pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate sensors
-    chassis.setBrakeMode(pros::E_MOTOR_BRAKE_COAST);
+    
     chassis.setPose(0,0,0);
     enabled_lp = true;
     l_piston.set_value(true);
@@ -108,19 +108,19 @@ void initialize() {
     enabled_ds = false;
     controller.set_text(0,0,"Middle Disabled");
 
-    pros::Task middleControl([]{
-        while(true){
-            changeSpeeds();
-            if(enabled_mid && scoringOn){
-                middle.set_value(false);
-                l_piston.set_value(false);
-            } else {
-                middle.set_value(true);
-                l_piston.set_value(true);
-            }
-            pros::delay(10);
-        }
-    });
+    // pros::Task middleControl([]{
+    //     while(true){
+    //         changeSpeeds();
+    //         if(enabled_mid && scoringOn){
+    //             middle.set_value(false);
+    //             l_piston.set_value(false);
+    //         } else {
+    //             middle.set_value(true);
+    //             l_piston.set_value(true);
+    //         }
+    //         pros::delay(10);
+    //     }
+    // });
 
 
     // the default rate is 50. however, if you need to change the rate, you
@@ -167,14 +167,146 @@ ASSET(example_txt); // '.' replaced with "_" to make c++ happy
  which demonstrates a lot of the features LemLib has to offer
  */
 void autonomous() {
-    distance_skills();
-    // right_auton();
-    // left_auton(); 
-    // tuning_auton();
-    // four_three_left_auton();
-    // pid_testing();
-    // straight_testing();
+    chassis.setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
+    enabled_mid = false;
+    //change speed values to tune//
+    chassis.setPose(0,0,90);
+    pros::delay(500);
+    ReAlign(4);
+    pros::delay(500);
+    chassis.moveToPoint(36, currY, 2500,{.forwards = true,.maxSpeed = 105,.minSpeed = 55,.earlyExitRange = 5});
+    chassis.moveToPoint(48.7, currY, 500,{true,55,0,1});
+    pros::delay(200);
+    ReAlign(1);
+    pros::delay(250);
+    chassis.turnToHeading(180, 1500);
+    scraper_toggled();
+    pros::delay(750);
+
+    // //first matchload//
+
+    chassis.moveToPoint(48.7,-70, 1500,{true,60,0,1});
+    loading();
+    pros::delay(1500);
+    chassis.moveToPoint(currX,-50, 1500,{false,60,0,1});
+    pros::delay(1000);
+    chassis.waitUntilDone();
+    chassis.turnToHeading(0, 1500);
+    scraper_toggled(); 
+    chassis.waitUntilDone();
+
+    chassis.moveToPoint(70,-33, 2000,{true,50,0,1});
+    pros::delay(1200);
+    chassis.turnToHeading(0, 1500);
+    pros::delay(500);
+    ReAlign(1);
+    pros::delay(750);
     
+    // // // moving to other side//
+    chassis.moveToPoint(currX+2.5,12, 2500,{.forwards = true,.maxSpeed = 105,.minSpeed = 55, .earlyExitRange = 5});
+    chassis.moveToPoint(currX+2.5,28, 700,{true,55,0,1});
+    pros::delay(800);
+    chassis.moveToPoint(49.3,48, 1500,{true,60,0,1});
+    pros::delay(850);
+    chassis.turnToHeading(270, 1500);
+    pros::delay(600);
+    ReAlign(2);
+    pros::delay(250);
+    chassis.turnToHeading(0, 1000);
+    pros::delay(400);
+    ReAlign(2);
+    pros::delay(700);
+  
+
+
+    // // //at 2nd goal//
+    
+    chassis.moveToPoint(49,25, 1500,{false,60,0,1});
+    chassis.waitUntilDone();
+    score_top();
+    ReAlign(2);
+    scraper_toggled();
+    pros::delay(2000);
+    loading();
+    chassis.moveToPoint(currX,70, 1500,{true,60,0,1});
+    pros::delay(2500);
+    chassis.moveToPoint(currX,25,1500,{false,60,0,1});
+    chassis.waitUntilDone();
+    score_top();
+    pros::delay(2250);
+    
+    // //move to third matchload//
+    
+    // // DELETE THIS LATER 
+    // chassis.setPose(0,0,270);
+    // ReAlign(2);
+    // // DELETE THIS LATER
+
+    chassis.moveToPoint(currX,45, 1500,{true,60,0,1});
+    pros::delay(500);
+    chassis.turnToHeading(270, 1500);
+    pros::delay(600);
+    ReAlign(2);
+    pros::delay(500);
+    chassis.moveToPoint(-42,currY, 1250,{.forwards = true,.maxSpeed = 115,.minSpeed = 45, .earlyExitRange = 5});
+    chassis.moveToPoint(-56,currY, 1500,{.forwards = true,.maxSpeed = 57,.minSpeed = 1, .earlyExitRange = 0});
+    chassis.waitUntilDone();
+    chassis.turnToHeading(0, 1100);
+    pros::delay(600);
+    ReAlign(3);
+    pros::delay(1200);
+    
+    //third matchload//
+    loading();
+    chassis.moveToPoint(currX,66.5, 1500,{true,60,0,1});
+    pros::delay(2500);
+    chassis.moveToPoint(currX,52, 1500,{false,60,0,1});
+    pros::delay(1500);
+    chassis.turnToHeading(180, 1500);
+    chassis.waitUntilDone();
+    scraper_toggled();
+    pros::delay(1000);
+
+    //moving to fourth matchload//
+    
+    chassis.moveToPoint(-71, 35, 2300,{true,50,0,1});
+    pros::delay(500);
+    chassis.turnToHeading(180,800);
+    pros::delay(1050);
+    ReAlign(3);
+    pros::delay(700);
+    chassis.moveToPoint(-64,-32, 2500,{true,80,0,1},false);
+    ReAlign(4);
+    pros::delay(500);
+    chassis.moveToPoint(-47.5,-47, 1750,{true,60,0,1},false);
+    pros::delay(250);
+    chassis.turnToHeading(90, 750,{},false);
+    ReAlign(4);
+    pros::delay(400);
+    chassis.turnToHeading(180, 750,{},false);
+    ReAlign(4);
+    pros::delay(400);
+    chassis.moveToPoint(currX,-23, 1750,{false,70,0,1},false);
+    score_top();
+    scraper_toggled();
+    pros::delay(2100);
+  
+    // loading();
+    // chassis.moveToPoint(currX,-70, 1750,{true,70,0,1},false);
+    // pros::delay(2200);
+    // chassis.moveToPoint(currX,-23, 1250,{false,60,0,1},false);
+    // score_top();
+    // pros::delay(2000);
+
+    // chassis.moveToPoint(-30,-70,1100,{true,100,0,1},false);
+    // pros::delay(230);
+    // chassis.turnToHeading(90,750,{},false);
+    // pros::delay(500);
+    // ReAlign(4);
+    // chassis.moveToPoint(30,-74,1100,{true,90,0,1},false);
+
+
+  
 }
 
 /**
