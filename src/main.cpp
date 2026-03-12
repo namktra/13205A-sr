@@ -102,8 +102,8 @@ void initialize() {
     l_piston.set_value(true);
     enabled_mid = false;
     middle.set_value(true);
-    scraper.set_value(true);
-    enabled_ml = true;
+    scraper.set_value(false);
+    enabled_ml = false;
     descore.set_value(false);
     enabled_ds = false;
     controller.set_text(0,0,"Middle Disabled");
@@ -278,32 +278,36 @@ void autonomous() {
     chassis.moveToPoint(-64,-32, 2500,{true,80,0,1},false);
     ReAlign(4);
     pros::delay(500);
-    chassis.moveToPoint(-47.5,-47, 1750,{true,60,0,1},false);
-    pros::delay(250);
+    chassis.moveToPoint(-47.5,-47, 1250,{true,60,0,1},false);
     chassis.turnToHeading(90, 750,{},false);
     ReAlign(4);
-    pros::delay(400);
+    pros::delay(150);
     chassis.turnToHeading(180, 750,{},false);
     ReAlign(4);
-    pros::delay(400);
+    pros::delay(100);
     chassis.moveToPoint(currX,-23, 1750,{false,70,0,1},false);
     score_top();
     scraper_toggled();
     pros::delay(2100);
-  
-    // loading();
-    // chassis.moveToPoint(currX,-70, 1750,{true,70,0,1},false);
-    // pros::delay(2200);
-    // chassis.moveToPoint(currX,-23, 1250,{false,60,0,1},false);
-    // score_top();
-    // pros::delay(2000);
 
-    // chassis.moveToPoint(-30,-70,1100,{true,100,0,1},false);
+    loading();
+    chassis.moveToPoint(currX,-70, 1750,{true,70,0,1},false);
+    pros::delay(1800);
+    chassis.moveToPoint(currX,-23, 1250,{false,60,0,1},false);
+    score_top();
+    pros::delay(2000);
+    scraper_toggled();
+    chassis.moveToPoint(-30,-70,1100,{true,100,0,1},false);
+    chassis.turnToHeading(100,750,{},false);
+    chassis.moveToPoint(40,-75,1400,{true,110,0,1},false);
+    pros::delay(200);
+
+    // 
     // pros::delay(230);
     // chassis.turnToHeading(90,750,{},false);
     // pros::delay(500);
     // ReAlign(4);
-    // chassis.moveToPoint(30,-74,1100,{true,90,0,1},false);
+    // chassis.moveToPoint(60,-74,1100,{true,90,0,1},false),false};
 
 
   
